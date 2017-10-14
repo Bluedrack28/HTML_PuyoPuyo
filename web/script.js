@@ -1,7 +1,7 @@
 const canvas = document.getElementById('canvas');
 let ctx = canvas.getContext('2d');
 let labelScore = document.getElementById('score');
-let score = 0;
+
 labelScore.innerHTML = 'Ton score: ' + 0
 let tableChar = document.getElementById('charactere');
 let button = document.getElementById('newGame');
@@ -28,8 +28,12 @@ function draw(){
                         ctx.fillStyle = '#4286f4'
                         break;
                 }
-                ctx.fillRect(e.x*40,e.y*40,40,40);
+                //ctx.fillRect(e.x*40,e.y*40,40,40);
+                ctx.beginPath();
+                ctx.arc(e.x*40+20,e.y*40+20, 20, 0, 2 * Math.PI);
+                ctx.fill();
             }
+
         }, this);
     }, this);
     if(game.end == true){
@@ -52,6 +56,7 @@ function update(){
         game.resetAllPoyu()
         game.updatePuyo();
         game.played();
+        labelScore.innerHTML = 'Ton score: ' + game.getScore();
         if(game.returnFocusPuyo() == null){
             game.newRound();
             if(game.end == true){

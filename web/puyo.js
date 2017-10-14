@@ -25,6 +25,7 @@ class Game {
         }
         this.pos = 0;
         this.sc = 0;
+        this.score = 0;
         this.end = false;
     }
     getPuyo(x,y){
@@ -189,8 +190,7 @@ class Game {
                     let e = this.table[j][i];
                     let path = this.findPath(e.x,e.y,e.color,[]);
                     if(path.length > 3){
-                        score += path.length*30;
-                        labelScore.innerHTML = "Ton score: " + score
+                        this.score += path.length*30;
                         path.forEach(function(poyu) {
                             
                             this.removePuyo(poyu.x,poyu.y);
@@ -200,6 +200,9 @@ class Game {
                 }
             }
         }
+    }
+    getScore(){
+        return this.score;
     }
     
 }
