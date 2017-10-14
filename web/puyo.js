@@ -52,10 +52,8 @@ class Game {
         let e2;
         for (let i = 0; i < this.y; i++) {
             for (let j = 0; j < this.x; j++) {
-                
                 let e = this.table[j][i];
                 if(e!=null){
-                    
                     if(e.focus == true && e1 == null){
                         e1 = e;
                     }else if(e.focus == true && e1 != null){
@@ -122,8 +120,10 @@ class Game {
             y: y,
             color: color
         }
+        path.push(this.getPuyo(e.x,e.y));
         while(true){
             verif = 0;
+            
             if(this.isIn(e.x+1,e.y)
             && this.getPuyo(e.x+1,e.y) != null
             && this.getPuyo(e.x+1,e.y).color == color
@@ -133,20 +133,20 @@ class Game {
                 this.sc ++;
                 e = this.getPuyo(e.x+1,e.y)
                 
-                path.push(e);
+                //path.push(e);
                 path.concat(this.findPath(e.x,e.y,e.color,path));
                 verif ++;
         
             }
             if(this.isIn(e.x,e.y+1)
             && this.getPuyo(e.x,e.y+1) != null
-            && this.getPuyo(e.x,e.y+1).color == color 
+            && this.getPuyo(e.x,e.y+1).color == color
             && this.getPuyo(e.x,e.y+1).focus == false
             && path.indexOf(this.getPuyo(e.x,e.y+1)) == -1
             ){
                 this.sc ++;
                 e = this.getPuyo(e.x,e.y+1)
-                path.push(e);
+                //path.push(e);
                 path.concat(this.findPath(e.x,e.y,e.color,path));
                 verif ++;
             }
@@ -158,7 +158,7 @@ class Game {
             ){
                 this.sc ++;
                 e = this.getPuyo(e.x,e.y-1)
-                path.push(e);
+                //path.push(e);
                 path.concat(this.findPath(e.x,e.y,e.color,path));
                 verif ++;
             }
@@ -171,7 +171,7 @@ class Game {
             
                 this.sc ++;
                 e = this.getPuyo(e.x-1,e.y)
-                path.push(e);
+                //path.push(e);
                 path.concat(this.findPath(e.x,e.y,e.color,path));
                 verif ++;
             }

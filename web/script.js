@@ -69,7 +69,7 @@ function update(){
         }
         i = 0;
     }else{
-        i += 0.1;
+        i += 0.01;
     }
 }
 function loop(){
