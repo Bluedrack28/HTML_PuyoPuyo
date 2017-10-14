@@ -101,7 +101,9 @@ document.addEventListener('keypress',(e) =>{
             if(puyos != null){
                 switch (game.pos) {
                     case 0:
-                        if(game.isIn(puyos.e2.x-1,puyos.e2.y-1)){
+                        if(game.isIn(puyos.e2.x-1,puyos.e2.y-1)
+                        && game.getPuyo(puyos.e2.x-1,puyos.e2.y-1) == null
+                        ){
                             game.table[puyos.e2.x][puyos.e2.y] = null;
                             puyos.e2.x -= 1;
                             puyos.e2.y -= 1;
@@ -112,7 +114,9 @@ document.addEventListener('keypress',(e) =>{
                         }
                         break;
                     case 1:
-                        if(game.isIn(puyos.e1.x+1,puyos.e1.y-1)){
+                        if(game.isIn(puyos.e1.x+1,puyos.e1.y-1)
+                        && game.getPuyo(puyos.e1.x+1,puyos.e1.y-1) == null
+                        ){
                             game.table[puyos.e1.x][puyos.e1.y] = null;
                             puyos.e1.x += 1;
                             puyos.e1.y -= 1;
@@ -122,7 +126,9 @@ document.addEventListener('keypress',(e) =>{
                         }
                         break;
                     case 2:
-                        if(game.isIn(puyos.e1.x+1,puyos.e1.y+1)){
+                        if(game.isIn(puyos.e1.x+1,puyos.e1.y+1)
+                        && game.getPuyo(puyos.e1.x+1,puyos.e1.y+1) == null
+                        ){
                             game.table[puyos.e1.x][puyos.e1.y] = null;
                             puyos.e1.x += 1;
                             puyos.e1.y += 1;
@@ -132,7 +138,9 @@ document.addEventListener('keypress',(e) =>{
                         }
                         break;
                     case 3:
-                        if(game.isIn(puyos.e2.x-1,puyos.e2.y+1)){
+                        if(game.isIn(puyos.e2.x-1,puyos.e2.y+1)
+                        && game.getPuyo(puyos.e2.x-1,puyos.e2.y+1) == null
+                        ){
                             game.table[puyos.e2.x][puyos.e2.y] = null;
                             puyos.e2.x -= 1;
                             puyos.e2.y += 1;
@@ -152,7 +160,9 @@ document.addEventListener('keypress',(e) =>{
             if(puyos != null){
                 switch (game.pos) {
                     case 0:
-                        if(game.isIn(puyos.e1.x-1,puyos.e1.y+1)){
+                        if(game.isIn(puyos.e1.x-1,puyos.e1.y+1)
+                        && game.getPuyo(puyos.e1.x-1,puyos.e1.y+1) == null
+                        ){
                             game.table[puyos.e1.x][puyos.e1.y] = null;
                             puyos.e1.x -= 1;
                             puyos.e1.y += 1;
@@ -163,33 +173,36 @@ document.addEventListener('keypress',(e) =>{
                         }
                         break;
                     case 1:
-                        if(game.isIn(puyos.e2.x-1,puyos.e2.y-1)){
+                        if(game.isIn(puyos.e2.x-1,puyos.e2.y-1)
+                        && game.getPuyo(puyos.e2.x-1,puyos.e2.y-1) == null
+                        ){
                             game.table[puyos.e2.x][puyos.e2.y] = null;
                             puyos.e2.x -= 1;
                             puyos.e2.y -= 1;
-                        //puyos.e1.focus = true;
                             game.addPuyo(puyos.e2);
                         }else{
                             game.pos -= 1;
                         }
                         break;
                     case 2:
-                        if(game.isIn(puyos.e2.x+1,puyos.e2.y-1)){
+                        if(game.isIn(puyos.e2.x+1,puyos.e2.y-1
+                        && game.getPuyo(puyos.e2.x+1,puyos.e2.y-1) == null
+                        )){
                             game.table[puyos.e2.x][puyos.e2.y] = null;
                             puyos.e2.x += 1;
                             puyos.e2.y -= 1;
-                        //puyos.e1.focus = true;
                             game.addPuyo(puyos.e2);
                         }else{
                             game.pos -= 1;
                         }
                         break;
                     case 3:
-                        if(game.isIn(puyos.e1.x+1,puyos.e1.y+1)){
+                        if(game.isIn(puyos.e1.x+1,puyos.e1.y+1)
+                        && game.getPuyo(puyos.e1.x+1,puyos.e1.y+1) == null
+                        ){
                             game.table[puyos.e1.x][puyos.e1.y] = null;
                             puyos.e1.x += 1;
                             puyos.e1.y += 1;
-                        //puyos.e2.focus = true;
                             game.addPuyo(puyos.e1);
                         }else{
                             game.pos -= 1;

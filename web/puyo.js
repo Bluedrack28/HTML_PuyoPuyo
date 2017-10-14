@@ -35,14 +35,20 @@ class Game {
         return this.table[x][y];
     }
     newRound(){
-        this.pos = 0;
-        let e1 = new Puyo(3,0);
-        let e2 = new Puyo(4,0);
-        e1.focus = true;
-        e2.focus = true;
-        this.addPuyo(e1);
-        this.addPuyo(e2);
-        //console.log(this.returnFocusPuyo());
+        if(this.getPuyo(3,0) == null
+        && this.getPuyo(4,0) == null
+        ){
+            this.pos = 0;
+            let e1 = new Puyo(3,0);
+            let e2 = new Puyo(4,0);
+            e1.focus = true;
+            e2.focus = true;
+            this.addPuyo(e1);
+            this.addPuyo(e2);
+        }else{
+            console.log('Perdu');
+        }
+        
     }
     returnFocusPuyo(){
         let e1;
@@ -84,7 +90,6 @@ class Game {
                         e.y = i+1;
                         e.fell = true;
                         if(e.y+1 >= game.y){
-                            //console.log('salut')
                             e.focus = false;
                         }
                         
@@ -92,7 +97,6 @@ class Game {
                         this.table[j][i+1] = e;
                         this.table[j][i] = null;
                     }else if(this.table[j][i+1] != null){
-                        //console.log('pute')
                         e.focus = false;
                     }
                 }
@@ -116,7 +120,6 @@ class Game {
     findPath(x,y,color,path){
         this.sc = 0;
         let verif = 0;
-        //let path = [];
         let e = {
             x: x,
             y: y,
@@ -189,15 +192,12 @@ class Game {
                     this.sc = 0;
                     let e = this.table[j][i];
                     let path = this.findPath(e.x,e.y,e.color,[]);
-                    //console.log(path)
                     if(path.length > 3){
-                        //console.log(path)
                         score += path.length*30;
                         labelScore.innerHTML = "Ton score: " + score
                         path.forEach(function(poyu) {
                             
                             this.removePuyo(poyu.x,poyu.y);
-                            //this.updatePuyo();
                         }, this);
                     }
                     
