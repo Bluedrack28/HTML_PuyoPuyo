@@ -17,11 +17,6 @@ class Puyo {
 }
 class Game {
     constructor(x,y){
-        this.fallenPuyo = {
-            firstPuyo : null,
-            secondPuyo : null,
-            x : null
-        }
         this.x = x;
         this.y = y;
         this.table = new Array();
@@ -30,23 +25,24 @@ class Game {
         }
         this.pos = 0;
         this.sc = 0;
+        this.end = false;
     }
     getPuyo(x,y){
         return this.table[x][y];
     }
     newRound(){
-        if(this.getPuyo(3,0) == null
-        && this.getPuyo(4,0) == null
+        if(this.getPuyo(2,0) == null
+        && this.getPuyo(3,0) == null
         ){
             this.pos = 0;
-            let e1 = new Puyo(3,0);
-            let e2 = new Puyo(4,0);
+            let e1 = new Puyo(2,0);
+            let e2 = new Puyo(3,0);
             e1.focus = true;
             e2.focus = true;
             this.addPuyo(e1);
             this.addPuyo(e2);
         }else{
-            console.log('Perdu');
+            this.end = true;
         }
         
     }

@@ -4,7 +4,8 @@ let labelScore = document.getElementById('score');
 let score = 0;
 labelScore.innerHTML = 'Ton score: ' + 0
 let tableChar = document.getElementById('charactere');
-
+let button = document.getElementById('newGame');
+button.disabled = true;
 let puyo = new Puyo();
 let game = new Game(6,12);
 
@@ -31,6 +32,18 @@ function draw(){
             }
         }, this);
     }, this);
+    if(game.end == true){
+        let x = canvas.width / 2;
+        let y = canvas.height / 2;
+        ctx.globalAlpha = 0.7;
+        ctx.fillStyle = 'black';
+        ctx.fillRect(0,0,canvas.width,canvas.height);
+        ctx.globalAlpha = 1;
+        ctx.font = '30pt Impact';
+        ctx.textAlign = 'center';
+        ctx.fillStyle = 'white';
+        ctx.fillText('Game Over', x, y);
+    }
 }
 
 let i = 0;
@@ -41,10 +54,17 @@ function update(){
         game.played();
         if(game.returnFocusPuyo() == null){
             game.newRound();
+            if(game.end == true){
+                button.disabled = false;
+                button.addEventListener('click',(e)=>{
+                    game = new Game(6,12);
+                    button.disabled = true;
+                });
+            }
         }
         i = 0;
     }else{
-        i += 0.08;
+        i += 0.1;
     }
 }
 function loop(){
@@ -213,15 +233,12 @@ document.addEventListener('keypress',(e) =>{
             }
         
         break;
-        case ' ':
-            game.newRound();
-        break;
         default:
             break;
     }
 });
 
-
+console.log(button)
 window.requestAnimationFrame(loop);
 
 game.newRound();
