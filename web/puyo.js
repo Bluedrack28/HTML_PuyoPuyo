@@ -11,6 +11,7 @@ class Puyo {
         this.y = y;
         this.focus = false;
         this.fell = false;
+        this.asFell = false;
         this.stop = false;
     }
     
@@ -83,14 +84,23 @@ class Game {
                     if(this.table[j][i+1] == null){
                         e.x = j;
                         e.y = i+1;
-                        e.fell = true;
+                        //verifie qu'il y a du vide au dessous
+                        
                         if(e.y+1 >= game.y){
+                            console.log('salut');
                             e.focus = false;
+                            e.asFell = true;
+                            e.fell = true;
+                        }else if(this.table[j][i+2] == null){
+                            e.asFell = false;
                         }
+                        e.fell = true;
                         this.table[j][i+1] = e;
                         this.table[j][i] = null;
                     }else if(this.table[j][i+1] != null){
+                    
                         e.focus = false;
+                        e.asFell = true;
                     }
                 }
             }
@@ -127,6 +137,7 @@ class Game {
                 && this.getPuyo(e.x+1,e.y) != null
                 && this.getPuyo(e.x+1,e.y).color == color
                 && this.getPuyo(e.x+1,e.y).focus == false
+                && this.getPuyo(e.x+1,e.y).asFell == true
                 && path.indexOf(this.getPuyo(e.x+1,e.y)) ==  -1
                 ){
                     this.sc ++;
@@ -139,6 +150,7 @@ class Game {
                 && this.getPuyo(e.x,e.y+1) != null
                 && this.getPuyo(e.x,e.y+1).color == color
                 && this.getPuyo(e.x,e.y+1).focus == false
+                && this.getPuyo(e.x,e.y+1).asFell == true
                 && path.indexOf(this.getPuyo(e.x,e.y+1)) == -1
                 ){
                     this.sc ++;
@@ -150,6 +162,7 @@ class Game {
                 &&this.getPuyo(e.x,e.y-1) != null
                 && this.getPuyo(e.x,e.y-1).color == color
                 && this.getPuyo(e.x,e.y-1).focus == false
+                && this.getPuyo(e.x,e.y-1).asFell == true
                 && path.indexOf(this.getPuyo(e.x,e.y-1)) == -1
                 ){
                     this.sc ++;
