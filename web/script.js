@@ -235,6 +235,7 @@ document.addEventListener('keypress',(e) =>{
             }
         
         break;
+        
         default:
             break;
     }

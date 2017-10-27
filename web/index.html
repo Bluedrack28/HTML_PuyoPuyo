@@ -7,16 +7,26 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <div class='center'>
-            <canvas id="canvas" width="240" height="480"></canvas>
+        <div style="display:flex;height:100%; width:100%">
+            <div class='center' style="position: realtive; width:50%">
+                <canvas id="canvas" width="240" height="480"></canvas>
             
             
-            <br>  
-            <label id="score"></label>
-            <br>
-            <button id="newGame">Nouvelle partie</button>
-
+                <br>  
+                <label id="score"></label>
+                <br>
+                <button id="newGame">Nouvelle partie</button>
+            </div>
+            <!-- 
+            <div class='right' style="position: realtive; height:50%">
+                <canvas id="canvas2" width="240" height="480"></canvas>
+                <br>  
+                <label id="score2"></label>
+                <br>
+            </div>
+            -->
         </div>
+        
         <script src="puyo.js"></script>
         <script src="script.js"></script>
     </body>
