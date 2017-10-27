@@ -157,8 +157,7 @@ class Game {
             && path.indexOf(this.getPuyo(e.x,e.y-1)) == -1
             ){
                 this.sc ++;
-                e = this.getPuyo(e.x,e.y-1)
-                //path.push(e);
+                e = this.getPuyo(e.x,e.y-1);
                 path.concat(this.findPath(e.x,e.y,e.color,path));
                 verif ++;
             }
@@ -170,8 +169,7 @@ class Game {
             ){
             
                 this.sc ++;
-                e = this.getPuyo(e.x-1,e.y)
-                //path.push(e);
+                e = this.getPuyo(e.x-1,e.y);
                 path.concat(this.findPath(e.x,e.y,e.color,path));
                 verif ++;
             }
