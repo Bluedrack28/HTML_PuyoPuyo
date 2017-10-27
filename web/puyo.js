@@ -87,8 +87,6 @@ class Game {
                         if(e.y+1 >= game.y){
                             e.focus = false;
                         }
-                        
-                        
                         this.table[j][i+1] = e;
                         this.table[j][i] = null;
                     }else if(this.table[j][i+1] != null){
@@ -100,7 +98,7 @@ class Game {
         
     }
     isIn(x,y){
-        if(x < 0 || y < 0 || x >= this.x || y >= this.y) return false;
+        if(x < 0 || y < 0 || x > this.x-1 || y > this.y-1) return false;
         return true;
     }
     resetAllPoyu(){
@@ -112,73 +110,72 @@ class Game {
             }
         }
     }
-    findPath(x,y,color,path){
-        this.sc = 0;
-        let verif = 0;
-        let e = {
-            x: x,
-            y: y,
-            color: color
-        }
-        path.push(this.getPuyo(e.x,e.y));
-        while(true){
-            verif = 0;
-            
-            if(this.isIn(e.x+1,e.y)
-            && this.getPuyo(e.x+1,e.y) != null
-            && this.getPuyo(e.x+1,e.y).color == color
-            && this.getPuyo(e.x+1,e.y).focus == false
-            && path.indexOf(this.getPuyo(e.x+1,e.y)) ==  -1
-            ){
-                this.sc ++;
-                e = this.getPuyo(e.x+1,e.y)
+    findPath(x,y,color,focus,path){
+        if(focus == false){
+            this.sc = 0;
+            let verif = 0;
+            let e = {
+                x: x,
+                y: y,
+                color: color
+            }
+            path.push(this.getPuyo(e.x,e.y));
+            while(true){
+                verif = 0;
                 
-                //path.push(e);
-                path.concat(this.findPath(e.x,e.y,e.color,path));
-                verif ++;
-        
-            }
-            if(this.isIn(e.x,e.y+1)
-            && this.getPuyo(e.x,e.y+1) != null
-            && this.getPuyo(e.x,e.y+1).color == color
-            && this.getPuyo(e.x,e.y+1).focus == false
-            && path.indexOf(this.getPuyo(e.x,e.y+1)) == -1
-            ){
-                this.sc ++;
-                e = this.getPuyo(e.x,e.y+1)
-                //path.push(e);
-                path.concat(this.findPath(e.x,e.y,e.color,path));
-                verif ++;
-            }
-            if(this.isIn(e.x,e.y-1)
-            &&this.getPuyo(e.x,e.y-1) != null
-            && this.getPuyo(e.x,e.y-1).color == color
-            && this.getPuyo(e.x,e.y-1).focus == false
-            && path.indexOf(this.getPuyo(e.x,e.y-1)) == -1
-            ){
-                this.sc ++;
-                e = this.getPuyo(e.x,e.y-1);
-                path.concat(this.findPath(e.x,e.y,e.color,path));
-                verif ++;
-            }
-            if(this.isIn(e.x-1,e.y) 
-            && this.getPuyo(e.x-1,e.y) != null
-            && this.getPuyo(e.x-1,e.y).color == color
-            && this.getPuyo(e.x-1,e.y).focus == false
-            && path.indexOf(this.getPuyo(e.x-1,e.y)) == -1
-            ){
+                if(this.isIn(e.x+1,e.y)
+                && this.getPuyo(e.x+1,e.y) != null
+                && this.getPuyo(e.x+1,e.y).color == color
+                && this.getPuyo(e.x+1,e.y).focus == false
+                && path.indexOf(this.getPuyo(e.x+1,e.y)) ==  -1
+                ){
+                    this.sc ++;
+                    e = this.getPuyo(e.x+1,e.y);
+                    path.concat(this.findPath(e.x,e.y,e.color,e.focus,path));
+                    verif ++;
             
-                this.sc ++;
-                e = this.getPuyo(e.x-1,e.y);
-                path.concat(this.findPath(e.x,e.y,e.color,path));
-                verif ++;
+                }
+                if(this.isIn(e.x,e.y+1)
+                && this.getPuyo(e.x,e.y+1) != null
+                && this.getPuyo(e.x,e.y+1).color == color
+                && this.getPuyo(e.x,e.y+1).focus == false
+                && path.indexOf(this.getPuyo(e.x,e.y+1)) == -1
+                ){
+                    this.sc ++;
+                    e = this.getPuyo(e.x,e.y+1);
+                    path.concat(this.findPath(e.x,e.y,e.color,e.focus,path));
+                    verif ++;
+                }
+                if(this.isIn(e.x,e.y-1)
+                &&this.getPuyo(e.x,e.y-1) != null
+                && this.getPuyo(e.x,e.y-1).color == color
+                && this.getPuyo(e.x,e.y-1).focus == false
+                && path.indexOf(this.getPuyo(e.x,e.y-1)) == -1
+                ){
+                    this.sc ++;
+                    e = this.getPuyo(e.x,e.y-1);
+                    path.concat(this.findPath(e.x,e.y,e.color,e.focus,path));
+                    verif ++;
+                }
+                if(this.isIn(e.x-1,e.y) 
+                && this.getPuyo(e.x-1,e.y) != null
+                && this.getPuyo(e.x-1,e.y).color == color
+                && this.getPuyo(e.x-1,e.y).focus == false
+                && path.indexOf(this.getPuyo(e.x-1,e.y)) == -1
+                ){
+                
+                    this.sc ++;
+                    e = this.getPuyo(e.x-1,e.y);
+                    path.concat(this.findPath(e.x,e.y,e.color,e.focus,path));
+                    verif ++;
+                }
+                if(verif == 0){
+                    break;
+                }
             }
-            if(verif == 0){
-                break;
-            }
+            return path;
         }
-        
-        return path;
+        return [];
     }
     played(){
         for (let i = this.y; i >= 0; i--) {
@@ -186,11 +183,10 @@ class Game {
                 if(this.table[j][i] != null){
                     this.sc = 0;
                     let e = this.table[j][i];
-                    let path = this.findPath(e.x,e.y,e.color,[]);
+                    let path = this.findPath(e.x,e.y,e.color,e.focus,[]);
                     if(path.length > 3){
                         this.score += path.length*30;
                         path.forEach(function(poyu) {
-                            
                             this.removePuyo(poyu.x,poyu.y);
                         }, this);
                     }

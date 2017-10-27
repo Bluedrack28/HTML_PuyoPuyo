@@ -28,7 +28,6 @@ function draw(){
                         ctx.fillStyle = '#4286f4'
                         break;
                 }
-                //ctx.fillRect(e.x*40,e.y*40,40,40);
                 ctx.beginPath();
                 ctx.arc(e.x*40+20,e.y*40+20, 20, 0, 2 * Math.PI);
                 ctx.fill();
@@ -132,7 +131,6 @@ document.addEventListener('keypress',(e) =>{
                             game.table[puyos.e2.x][puyos.e2.y] = null;
                             puyos.e2.x -= 1;
                             puyos.e2.y -= 1;
-                            //puyos.e2.focus = true;
                             game.addPuyo(puyos.e2);
                         }else{
                             game.pos -= 1;
@@ -191,10 +189,9 @@ document.addEventListener('keypress',(e) =>{
                             game.table[puyos.e1.x][puyos.e1.y] = null;
                             puyos.e1.x -= 1;
                             puyos.e1.y += 1;
-                            //puyos.e2.focus = true;
                             game.addPuyo(puyos.e1);
                         }else{
-                            game.pos -= 1;
+                            game.pos += 1;
                         }
                         break;
                     case 1:
@@ -206,19 +203,19 @@ document.addEventListener('keypress',(e) =>{
                             puyos.e2.y -= 1;
                             game.addPuyo(puyos.e2);
                         }else{
-                            game.pos -= 1;
+                            game.pos += 1;
                         }
                         break;
                     case 2:
-                        if(game.isIn(puyos.e2.x+1,puyos.e2.y-1
+                        if(game.isIn(puyos.e2.x+1,puyos.e2.y-1)
                         && game.getPuyo(puyos.e2.x+1,puyos.e2.y-1) == null
-                        )){
+                        ){
                             game.table[puyos.e2.x][puyos.e2.y] = null;
                             puyos.e2.x += 1;
                             puyos.e2.y -= 1;
                             game.addPuyo(puyos.e2);
                         }else{
-                            game.pos -= 1;
+                            game.pos += 1;
                         }
                         break;
                     case 3:
@@ -230,7 +227,7 @@ document.addEventListener('keypress',(e) =>{
                             puyos.e1.y += 1;
                             game.addPuyo(puyos.e1);
                         }else{
-                            game.pos -= 1;
+                            game.pos += 1;
                         }
                         break;
                 }
