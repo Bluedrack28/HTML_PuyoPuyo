@@ -68,7 +68,7 @@ function update(){
         }
         i = 0;
     }else{
-        i += 0.01;
+        i += 0.1;
     }
 }
 function loop(){
@@ -235,7 +235,7 @@ document.addEventListener('keypress',(e) =>{
             }
         
         break;
-        
+
         default:
             break;
     }
